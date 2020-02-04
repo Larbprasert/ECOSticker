@@ -1,0 +1,40 @@
+﻿<style type="text/css">
+    .btn.btn-app {
+        display: inline-block;
+        width: 150px;
+        font-size: 30px;
+        font-weight: 400;
+        color: #FFF;
+        text-align: center;
+        text-shadow: 0 -1px -1px rgba(0,0,0,.2) !important;
+        border: none;
+        border-radius: 12px;
+        padding: 20px 0 8px;
+        margin: 4px;
+        line-height: 1.7;
+        position: relative;
+    }
+</style>
+<div class="row">
+    <fieldset>
+        <legend> <i class="fa fa-home"></i> Home</legend>
+     
+        <a class="btn btn-app btn-primary pull-left btn-large" href="@Url.Action("index","station")">
+            <i class="ace-icon fa fa-print bigger-230"></i>
+            Print
+        </a>
+        
+        <a class="btn btn-app btn-success" href="@Url.Action("Index", "ManageSticker")">
+            <i class="ace-icon fa fa-cloud-upload bigger-230"></i>
+            Upload
+        </a>
+        <button class="btn btn-app btn-grey">
+            <i class="ace-icon fa fa-list-alt bigger-230"></i>
+            Reports
+        </button>
+        <a class="btn btn-app btn-danger" href="@Url.Action("Index" , "Setting")">
+            <i class="ace-icon fa fa-gears bigger-230"></i>
+            Setting
+        </a>
+    </fieldset>
+</div>

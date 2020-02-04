@@ -1,0 +1,278 @@
+﻿@{
+    ViewBag.Title = "Account Setting";
+}
+
+<script src="~/js/setting/accountSetting.js?v=@Guid.NewGuid().ToString("N")"></script>
+<style type="text/css">
+    a:hover {
+        cursor: pointer;
+    }
+</style>
+<div class="page-header">
+    <h1>
+        <a style=" text-decoration: none !important;" href="@Url.Action("index","Setting")">
+            Setting
+        </a> 
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            Account Setting
+        </small>
+    </h1>
+</div>
+
+<div class="container" ng-controller="accountSettingController">
+
+    <div class="row tableAccount ">
+
+        <div class="col-xs-12">
+            <button class="btn  btn-info btn-sm" id="btnAccount" ng-click="modalAccount()" ><i class="fa fa-plus"></i> Account</button>
+
+        </div>
+        &nbsp;
+        <div class="col-xs-12">
+            <table class="table table-striped table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">
+                            Name
+                        </th>
+                        <th class="text-center">
+                            Email
+                        </th>
+                        <th class="text-center">
+                            Role
+                        </th>
+                        <th class="text-center">
+                            Telephone
+                        </th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-show="searchData.length<1">
+                        <td colspan="6" class="text-center">
+                            No data.
+                        </td>
+                    </tr>
+                    <tr ng-repeat="a in searchData">
+                        <td class="text-center">{{a.rw}}</td>
+                        <td>{{a.Name}}</td>
+                        <td>{{a.Username}}</td>
+                        <td>{{a.RoleName}}</td>
+                        <td class="text-center">{{a.Tel}}</td>
+                        <td class="text-center">
+                            <span  class="btn-link" ng-click="edit(a)" title="edit"><i class="ace-icon fa fa-pencil bigger-130"></i></span>
+                            &nbsp;
+                            <span class="btn-link" ng-click="delete(a)" title="delete"><i class="text-danger ace-icon fa fa-trash-o bigger-130"></i></span>
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-xs-12" ng-hide="gridParam.LastPage<2">
+            <div class="pull-left">
+                <span class="text-muted">Page: {{gridParam.CurrentPage| number:0}} of {{gridParam.LastPage| number:0}} <em><u>Total : {{gridParam.TotalRecord| number:0}} record(s)</u></em></span>
+            </div>
+            <div class="pull-right">
+                <pagination total-items="gridParam.TotalRecord"
+                            ng-model="gridParam.CurrentPage"
+                            items-per-page="gridParam.PageSize"
+                            max-size="gridParam.MaxPageSize"
+                            num-pages="gridParam.LastPage"
+                            class="pagination-sm"
+                            boundary-links="true" rotate="false"
+                            ng-change="vc_data()">
+
+                </pagination>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal-->
+    <div class="modal fade" id="modalAccount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" @*ng-controller="ModalGroupController"*@>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Account</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form class="form-horizontal" name="formAccount">
+                        <div class="tabbable">
+                            <ul class="nav nav-tabs padding-16">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#AccountInfo">
+                                        <i class="green ace-icon fa fa-pencil-square-o bigger-125"></i>
+                                        Account Info
+                                    </a>
+                                </li>
+                            </ul>
+                            <br />
+                            <div class="space-4"></div>
+                            <div class="tab-content profile-edit-tab-content">
+                                <div id="AccountInfo" class="tab-pane active">
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Name</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" ng-model="data.name" name="txtname" required />
+                                        </div>
+                                        <span class="label label-danger" ng-show="formAccount.txtname.$error.required">
+                                            Required!
+                                        </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Role</label>
+                                        <div class="col-sm-5">
+                                            <p ng-repeat="(index,r) in role">
+                                                <input name="textcheckbox" type="checkbox" class="ace" @*ng-checked="r.selected"*@ ng-model="role.value[index]" ng-change="clickc(index,r)" ng-true-value="'true'" ng-false-value="'false'">
+                                                <span class=" lbl">&nbsp;{{r.Name}}</span>
+                                            </p>
+                                        </div>
+                                        <span class="label label-danger" ng-show="formAccount.textcheckbox.$error.required">
+                                            Required!
+                                        </span>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Email</label>
+                                        <div class="col-sm-5">
+                                            <input type="email" class="form-control" ng-model="data.email" name="txtEmail" required />
+                                        </div>
+                                        <span class="label label-danger" ng-show="formAccount.txtEmail.$error.required">
+                                            Required!
+                                        </span>
+                                        <span class="label label-danger" ng-show="formAccount.txtEmail.$error.email">Invalid Email!</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label ">Password</label>
+                                        <div class="col-sm-5">
+                                            <input type="password" class="form-control" ng-model="data.password" name="txtPassword" required>
+                                        </div>
+                                        <span class="label label-danger" ng-show="formAccount.txtPassword.$error.required">
+                                            Required!
+                                        </span>
+                                    </div>
+                                    @*<div class="form-group">
+                                            <label class="col-sm-3 control-label">Confirm Password</label>
+
+                                            <div class="col-sm-5">
+                                                <input type="password" class="form-control" ng-model="confirmpassword" name="txtConfirmPassword" required>
+                                            </div>
+                                            <span class="label label-danger" ng-show="formAccount.txtConfirmPassword.$error.required">
+                                                Required!
+                                            </span>
+                                        </div>*@
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Telephone</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" ng-model="data.telephone" name="txtTelephone" required>
+                                        </div>
+                                        <span class="label label-danger" ng-show="formAccount.txtTelephone.$error.required">
+                                            Required!
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-sm" ng-disabled="!formAccount.$valid" ng-click="save()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Modal-->
+    <div class="modal fade" id="modalEditAccount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" @*ng-controller="ModalGroupController"*@>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Account</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form class="form-horizontal" name="formEditAccount">
+                        <div class="tabbable">
+                            <ul class="nav nav-tabs padding-16">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#AccountInfo">
+                                        <i class="green ace-icon fa fa-pencil-square-o bigger-125"></i>
+                                        Account Info
+                                    </a>
+                                </li>
+                            </ul>
+                            <br />
+                            <div class="space-4"></div>
+                            <div class="tab-content profile-edit-tab-content">
+                                <div id="AccountInfo" class="tab-pane active">
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Name</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" ng-model="data.name" name="txtname" required />
+                                        </div>
+                                        <span class="label label-danger" ng-show="formEditAccount.txtname.$error.required">
+                                            Required!
+                                        </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Role</label>
+                                        <div class="col-sm-5">
+                                            <p ng-repeat="(index,r) in roleEdit" >
+                                                <input name="txtcheckbox" type="checkbox" class="ace" ng-checked="r.selected" ng-model="arrole" ng-click="clickEdit($event, r.Id)">
+                                                <span class=" lbl">&nbsp;{{r.Name}}</span>
+                                            </p>
+                                        </div>
+                                        <span class="label label-danger" ng-show="formEditAccount.txtcheckbox.$error.required">
+                                            Required!
+                                        </span>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Email</label>
+                                        <div class="col-sm-5">
+                                            <input type="email" class="form-control" ng-model="data.email" name="txtEmail" required />
+                                        </div>
+                                        <span class="label label-danger" ng-show="formEditAccount.txtEmail.$error.required">
+                                            Required!
+                                        </span>
+                                        <span class="label label-danger" ng-show="formEditAccount.txtEmail.$error.email">Invalid Email!</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Telephone</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" ng-model="data.telephone" name="txtTelephone" required>
+                                        </div>
+                                        <span class="label label-danger" ng-show="formEditAccount.txtTelephone.$error.required">
+                                            Required!
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-sm" ng-disabled="!formEditAccount.$valid" ng-click="save()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

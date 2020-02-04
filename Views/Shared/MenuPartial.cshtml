@@ -1,0 +1,38 @@
+﻿@*@using Microsoft.AspNet.Identity
+    @if (Request.IsAuthenticated)
+    {
+       }
+    else
+    {
+
+    }*@
+
+@*<li class='hover @(@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().ToLower()=="pos"?"active":"")'>
+    <a href="@Url.Action("index","station")">
+        <i class="menu-icon fa fa-print"></i>
+        <span class="menu-text"> Print Station </span>
+    </a>
+    <b class="arrow"></b>
+</li>
+<li class='hover @(@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().ToLower()=="managesticker"?"active":"")'>
+    <a href="@Url.Action("index", "managesticker")">
+        <i class="menu-icon fa fa-upload"></i>
+        <span class="menu-text"> Upload e-Co Sticker </span>
+    </a>
+    <b class="arrow"></b>
+</li>
+<li class='hover @(@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().ToLower()=="reports"?"active":"")'>
+    <a href="@Url.Action("index","master")">
+        <i class="menu-icon fa fa-list-alt"></i>
+        <span class="menu-text"> Reports </span>
+    </a>
+    <b class="arrow"></b>
+</li>
+<li class='hover @(@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().ToLower()=="config"?"active":"")'>
+    <a href="@Url.Action("index","master")">
+        <i class="menu-icon fa fa-gears"></i>
+        <span class="menu-text"> Configuration System</span>
+    </a>
+    <b class="arrow"></b>
+</li>*@
+

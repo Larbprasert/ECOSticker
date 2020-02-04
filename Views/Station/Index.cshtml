@@ -1,0 +1,163 @@
+﻿@{
+    ViewBag.Title = "Print";
+}
+@*<script type="text/javascript">
+        $(function () {
+            var state = 0;
+            $("#preview_area").hide();
+            $("#alert_error").hide();
+            $("#menutop").hide();
+            $("#btnPrint").click(function () {
+                $("#alert_error").hide();
+                switch (state) {
+                    case 0:
+                        var val = $("#txtCode").val();
+                        switch (val) {
+                            case "nodata":
+                                $("#alert_error").show();
+                                break;
+                            case "reprint":
+                                $.iconMsgBox({
+                                    title: 'Reprint',
+                                    msg: 'Input password for re-print : <input type="password" class="form-control">',
+                                    buttons: [{
+                                        text: "Ok", click: function () {
+                                            $.iconMsgBox.close();
+                                            $("#preview_area").show();
+                                            state++;
+
+                                        }
+                                    }]
+                                });
+                                break;
+                            default:
+                                $("#preview_area").show();
+                                state++;
+
+                                break;
+
+                        }
+
+                        break;
+                    case 1:
+                        window.print();
+                        $("#preview_area").hide();
+                        state = 0;
+                        break;
+                    default:
+
+                }
+            })
+        })
+    </script>
+    <style type="text/css">
+        .img-preview {
+            height: 800px;
+        }
+    </style>*@
+
+<div class="col-sm-12" ng-controller="StationController">
+    <div class="widget-box widget-color-blue3">
+        <div class="widget-header  hidden-print">
+            <h4 class="widget-title"><i class="fa fa-print"></i> Print Sticker</h4>
+        </div>
+
+        <div class="widget-body" style="min-height:500px;">
+            <div class="widget-main">
+                <div class="row">
+                    <div class="col-xs-4" style="margin-right:0px;padding-right:0px;">
+                        <select class="form-control input-lg"
+                                ng-model="select_printer"
+                                ng-change="changedPrinter(select_printer)"
+                                ng-options="opt.Name for opt in print_data">
+                            <option value="">== Select Printer ==</option>
+                        </select>
+
+                      </div >
+                    <div class="col-xs-8" style="margin-left:0px;padding-left:0px;">
+                        <div class="input-group input-group-lg">
+
+
+
+                            <input type="text" class="form-control input-lg" id="txtCode" ng-model="VINNO" ng-disabled="disable_txtprt" ng-change="textChange(VINNO)" />
+
+                            <span class="input-group-btn">
+                                <span class="btn btn-lg btn-success" type="button" id="btnPrint" ng-disabled="disable_btnprt" ng-click="click_search(VINNO);">
+                                    <i class="ace-icon fa fa-barcode bigger-110"></i>
+                                </span>
+                            </span>
+
+
+
+
+
+                        </div>
+                    </div>
+                    </div>
+                   
+               
+
+                <hr class="hidden-print">
+                <div class="col-xs-12" ng-show="error_message">
+                    <div class="alert alert-danger">
+                        <i class="ace-icon fa fa-exclamation-triangle bigger-120"></i>
+                        Invalid data for this code!
+                    </div>
+                </div>
+                <div class="col-xs-12" ng-show="success_message">
+                    <div class="alert alert-success">
+
+                        <i class="ace-icon fa fa-check bigger-120"></i>
+                        {{message_when_success}}
+
+
+                    </div>
+                    <hr />
+                </div>
+
+                <div class="row" ng-show="preview_template">
+
+                    @RenderPage("~/Views/Station/Info.cshtml")
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">  Please input <br /> Username & Password.</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" placeholder="Username" ng-model="chUsername">
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+
+                        <div class="col-sm-12">
+                            <input type="password" class="form-control" placeholder="Password" ng-model="chPassword">
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="checkPassword(chUsername,chPassword)">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/station/index.js?v=@Guid.NewGuid().ToString("N")"></script>

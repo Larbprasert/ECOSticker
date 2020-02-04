@@ -1,0 +1,20 @@
+﻿.icon-modal {
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000;
+    z-index: 99;
+    display: block;
+    /*filter: alpha(opacity=160);*/
+    -moz-opacity: .35;
+    opacity: .35;
+    cursor: progress;
+}
+
+.cur-default {
+    cursor: default;
+}

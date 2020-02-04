@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Setting";
+}
+
+<style type="text/css">
+    .btn.btn-app {
+        display: inline-block;
+        width: 225px;
+        font-size: 30px;
+        font-weight: 400;
+        color: #FFF;
+        text-align: center;
+        text-shadow: 0 -1px -1px rgba(0,0,0,.2) !important;
+        border: none;
+        border-radius: 12px;
+        padding: 20px 0 8px;
+        margin: 4px;
+        line-height: 1.7;
+        position: relative;
+    }
+</style>
+<div class="row">
+    <fieldset>
+        <legend>
+        <a style=" text-decoration: none !important;" href="@Url.Action("index","Setting")">
+            <i class="fa fa-gears"></i> 
+    Setting
+</a> 
+        </legend>
+
+    </fieldset>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <a class="btn btn-link" href="@Url.Action("AccountSetting", "Setting")">
+                <i class="ace-icon fa fa-gears"></i>
+                Account Setting
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-link" href="@Url.Action("ConfigSetting", "Setting")">
+                <i class="ace-icon fa fa-wrench"></i>
+                Config Setting
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-link" href="@Url.Action("PrinterSetting", "Setting")">
+                <i class="ace-icon fa fa-print"></i>
+                Printer Setting
+            </a>
+        </div>
+    </div>
+    <hr />
+</div>
+

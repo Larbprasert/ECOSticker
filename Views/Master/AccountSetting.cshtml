@@ -1,0 +1,261 @@
+﻿@{
+    ViewBag.Title = "Account Setting";
+}
+<script src="~/Scripts/bootstrap.js"></script>
+<div class="page-header">
+    <h1>
+        e-Co Sticker
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            Account Setting
+        </small>
+    </h1>
+</div>
+
+<div class="container">
+
+    <div class="row tableAccount ">
+
+        <div class="col-xs-12">
+            <button class="btn  btn-info btn-sm" id="btnAccount" data-toggle="modal" data-target="#modalAccount"><i class="fa fa-plus"></i> Account</button>
+
+        </div>
+        &nbsp;
+        <div class="col-xs-12">
+            <table class="table table-striped table-bordered table-responsive" @*id="table_vc"*@>
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">
+                            Name
+                        </th>
+                        <th class="text-center">
+                            Address
+                        </th>
+                        <th class="text-center">
+                            Role
+                        </th>
+                        <th class="text-center">
+                            Moblie
+                        </th>
+                        <th class="text-center">
+                            Email
+                        </th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr @*ng-repeat="a in data_vc"*@>
+                        <td class="text-center">1</td>
+                        <td class="text-left">admin Ecosticker</td>
+                        <td class="text-left">101/1 ต.หนองหาร อ.สันทราย เชียงใหม่ 50290</td>
+                        <td class="text-left">Admin</td>
+                        <td class="text-left">08123456789</td>
+                        <td class="text-left">prasit@iconframework.com</td>
+                        <td class="text-center">
+                            <a class="warning  ace-icon fa fa-pencil bigger-130"></a>
+                            &nbsp;
+                            <a class="red  ace-icon fa fa-trash-o bigger-130"></a>
+                        </td>
+
+                    </tr>
+                    <tr @*ng-repeat="a in data_vc"*@>
+                        <td class="text-center">2</td>
+                        <td class="text-left">Prasit ICON</td>
+                        <td class="text-left">101/1 ต.หนองหาร อ.สันทราย เชียงใหม่ 50290</td>
+                        <td class="text-left">User</td>
+                        <td class="text-left">08123456789</td>
+
+                        <td class="text-left">prasit@iconframework.com</td>
+                        <td class="text-center">
+                            <a class="warning  ace-icon fa fa-pencil bigger-130"></a>
+                            &nbsp;
+                            <a class="red  ace-icon fa fa-trash-o bigger-130"></a>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        @*<div class="col-xs-12" ng-hide="gridParam.LastPage<2">
+                <div class="pull-left">
+                    <span class="text-muted">Page: {{gridParam.CurrentPage| number:0}} of {{gridParam.LastPage| number:0}} <em><u>Total : {{gridParam.TotalRecord| number:0}} record(s)</u></em></span>
+                </div>
+                <div class="pull-right">
+                    <pagination total-items="gridParam.TotalRecord"
+                                ng-model="gridParam.CurrentPage"
+                                items-per-page="gridParam.PageSize"
+                                max-size="gridParam.MaxPageSize"
+                                num-pages="gridParam.LastPage"
+                                class="pagination-sm"
+                                boundary-links="true" rotate="false"
+                                ng-change="vc_data()">
+
+                    </pagination>
+                </div>
+            </div>*@
+    </div>
+
+
+</div>
+<!--Modal-->
+<div class="modal fade" id="modalAccount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" @*ng-controller="ModalGroupController"*@>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Account</h4>
+            </div>
+            <div class="modal-body">
+
+                <form class="form-horizontal">
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs padding-16">
+                            <li class="active">
+                                <a data-toggle="tab" href="#AccountInfo">
+                                    <i class="green ace-icon fa fa-pencil-square-o bigger-125"></i>
+                                    Account Info
+                                </a>
+                            </li>
+                            <li class="">
+                                <a data-toggle="tab" href="#Password">
+                                    <i class="blue ace-icon fa fa-key bigger-125"></i>
+                                    Password
+                                </a>
+                            </li>
+                        </ul>
+                        <br />
+                        <div class="space-4"></div>
+                        <div class="tab-content profile-edit-tab-content">
+                            <div id="AccountInfo" class="tab-pane active">
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">FirstName</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" name="firstname" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">LastName</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" name="lastname" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Role</label>
+                                    <div class="col-sm-5">
+                                        <select class="form-control">
+                                            <option value="" selected="selected">Select Role</option>
+                                            <option value="">Admin</option>
+                                            <option value="">User</option>
+                                            <option value="">Manager</option>
+                                            <option value="">Engineer</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label textlabel ">Address No</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control " name="txtaddressNo">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label textlabel ">Moo</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control " name="txtMoo">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label textlabel ">Soi</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control " name="txtSoi">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label textlabel ">Road</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control " name="txtfoad">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Province</label>
+                                    <div class="col-sm-5">
+                                        <select class="form-control" >
+                                            <option selected="selected">Select Province</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">District</label>
+                                    <div class="col-sm-5">
+                                        <select class="form-control">
+                                            <option selected="selected">Select District</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">SubDistrict</label>
+                                    <div class="col-sm-5">
+                                        <select class="form-control">
+                                            <option selected="selected">Select SubDistrict</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label textlabel ">ZipCode</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control " name="txtZipCode">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Email</label>
+                                    <div class="col-sm-5">
+                                        <input type="email" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-website">Moblie</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                               
+                            </div>
+
+                            <div id="Password" class="tab-pane ">
+                                <div class="space-10"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label ">Password</label>
+                                    <div class="col-sm-5">
+                                        <input type="password" class="form-control" >
+                                    </div>
+                                </div>
+
+                                <div class="space-4"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Confirm Password</label>
+
+                                    <div class="col-sm-5">
+                                        <input type="password" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-sm" ng-disabled="!ModalAddGroup.$valid" ng-click="save()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

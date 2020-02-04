@@ -1,0 +1,32 @@
+﻿@*@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink(StaticVariable.ServerUser().FullName, "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}*@
+
+
+<ul class="nav navbar-nav navbar-right">
+    <li class="" id="username">   </li>
+    <li>@Html.ActionLink("Log off", "index", "login", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+</ul>
+
+<script>
+    console.log(GlobalVar.useronline().Name);
+    $('#username').html("&nbsp; &nbsp; &nbsp;" + GlobalVar.useronline().users.Name + "&nbsp; &nbsp; &nbsp;");
+</script>

@@ -1,0 +1,84 @@
+﻿.custom-table {
+    margin-bottom: 5px !important;
+}
+
+    .custom-table td {
+        /*line-height: 21px;*/
+    }
+
+    .custom-table [type=checkbox] {
+        margin-top: 0px;
+    }
+
+    .custom-table th[role=checkbox] {
+        min-width: 13px;
+        text-align: center;
+    }
+
+    .custom-table th[role=button] {
+        min-width: 80px;
+        text-align: center;
+    }
+
+    .custom-table th[data-sort] {
+        cursor: pointer;
+    }
+
+        .custom-table th[data-sort] i {
+            display: inline-block;
+            min-width: 14px;
+            margin-top: 3px;
+        }
+
+.custom-table-status {
+    margin-top: 5px;
+}
+
+    .custom-table-status.loading {
+        background: url(images/table/loader.gif) no-repeat left center;
+        padding-left: 25px;
+    }
+
+.custom-table-status-center {
+    /*position: absolute;
+    left: 50%;
+    top: 50%;*/
+}
+
+.custom-table-pagination {
+    margin: 5px 0 0 !important;
+    /*margin-top: 5px;
+    margin-bottom: 5px;*/
+}
+
+    .custom-table-pagination button {
+        margin: 0 2px;
+    }
+
+        .custom-table-pagination button i {
+            margin-right: 5px;
+        }
+
+.custom-table-pagination-detail {
+    /*margin-top: 7px;*/
+}
+
+    .custom-table tbody td button {
+        margin-right: 5px;
+    }
+
+.custom-table th.sorted, .custom-table td.sorted {
+    background-color: #F9F9F9;
+}
+
+.data-center {
+    text-align: center !important;
+}
+
+.data-left {
+    text-align: left !important;
+}
+
+.data-right {
+    text-align: right !important;
+}

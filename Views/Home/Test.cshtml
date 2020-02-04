@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+   
+}
+<script src="~/js/manageSticker/index.js"></script>
+<div ng-controller="vcController">
+  <table class="table table-striped">
+      <thead>
+          <tr>
+              <th>Name</th>
+              <th>Value</th>
+              
+          </tr>
+          
+      </thead>
+      <tbody ng-repeat="data in dataPrint">
+          <tr>
+              <td>{{data.Name}}</td>
+              <td>{{data.Value}}</td>
+          </tr>
+      </tbody>
+  </table>
+  
+</div>
+
